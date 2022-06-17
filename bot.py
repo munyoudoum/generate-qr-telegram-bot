@@ -20,7 +20,7 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-PORT = int(os.environ.get("PORT", 8443))
+# PORT = int(os.environ.get("PORT", 8443))
 TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
 
 

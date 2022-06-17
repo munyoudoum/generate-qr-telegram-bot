@@ -54,11 +54,6 @@ def create_qr(update: Update, context: CallbackContext) -> None:
     )
 
 
-def support_command(update: Update, context: CallbackContext) -> None:
-    """Send a message when the command /support is issued."""
-    update.message.reply_text("")
-
-
 def main() -> None:
     """Start the bot."""
     # Create the Updater and pass it your bot's token.

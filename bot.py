@@ -41,14 +41,29 @@ def help_command(update: Update, context: CallbackContext) -> None:
     update.message.reply_text("Send any text or link to generate a QR code image!")
 
 
-def create_qr(update: Update, context: CallbackContext) -> None:
+def create_qr(update: Update, context: CallbackContext, transparent=True) -> None:
     """Create QR from the user message."""
     qr = qrcode.QRCode(version=1, box_size=10, border=5)
     qr.add_data(update.message.text)
     qr.make(fit=True)
     img = qr.make_image(fill="black", back_color="white")
-    tmp_filename = "tmp_qrcode.png"
+
+    if transparent:
+        img = img.convert("RGBA")
+        datas = img.getdata()
+
+        newData = []
+        for item in datas:
+            if item[0] == 255 and item[1] == 255 and item[2] == 255:
+                newData.append((255, 255, 255, 0))
+            else:
+                newData.append(item)
+
+        img.putdata(newData)
+
+    tmp_filename = "tmp_qrcode.webp"
     img.save(tmp_filename)
+    
     update.message.bot.send_photo(
         update.message.chat.id, photo=open(tmp_filename, "rb")
     )

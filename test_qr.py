@@ -20,7 +20,7 @@ def create_qr(text) -> None:
 
     img.putdata(newData)
 
-    tmp_filename = "tmp_qrcode.png"
+    tmp_filename = "tmp_qrcode.webp"
     img.save(tmp_filename)
 
 if __name__ == "__main__":

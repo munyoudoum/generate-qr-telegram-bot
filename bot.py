@@ -61,7 +61,7 @@ def create_qr(update: Update, context: CallbackContext, transparent=True) -> Non
 
         img.putdata(newData)
 
-    tmp_filename = "tmp_qrcode.png"
+    tmp_filename = "tmp_qrcode.webp"
     img.save(tmp_filename)
     
     update.message.bot.send_photo(
